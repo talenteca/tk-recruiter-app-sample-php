@@ -20,7 +20,8 @@ class RecruiterApp {
     }
     $challenge_code_encoded = urlencode($challenge_code);
     $recruiter_app_id_encoded = urlencode(self::RECRUITER_APP_ID);
-    return self::TALENTECA_BASE_URL."/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded;
+    $redirect_callback_url = urlencode($this->getRedirectCallbackUrl());
+    return self::TALENTECA_BASE_URL."/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded."&redirect=".$redirect_callback_url;
   }
 
   private function getChallengeCode() {
@@ -50,6 +51,16 @@ class RecruiterApp {
     $this->session['error_message'] = "Unable to get challenge code to start request authentication";
     $this->session['error_detail'] = $response;
     return null;
+  }
+
+  private function getRedirectCallbackUrl()
+  {
+    $schema = "http";
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on")
+    {
+      $schema = "https";
+    }
+    return $schema."://".$_SERVER['HTTP_HOST']."/?action=receive-auth";
   }
 
 }
