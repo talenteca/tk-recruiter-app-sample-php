@@ -14,8 +14,8 @@ class Router {
         $controller->start();
         break;
 
-        case 'demo':
-        $controller->showJobAds();
+        case 'list-job-ads':
+        $controller->listJobAds();
         break;
   
         case 'request-auth':
@@ -23,7 +23,7 @@ class Router {
         break;
 
         case 'error':
-        $controller->showError($get);
+        $controller->showError($session);
         break;
       
         default:
