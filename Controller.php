@@ -35,6 +35,7 @@ class Controller {
   public function showError()
   {
     $error_message = $this->session['error_message'];
+    $error_detail = $this->session['error_detail'];
     require_once('layout/views/error.php');
   }
 
