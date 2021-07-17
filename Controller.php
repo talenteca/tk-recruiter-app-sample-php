@@ -9,10 +9,10 @@ class Controller {
 
   public function requestAuth()
   {
-    $recruiterApp = new RecruiterApp($session);
+    $recruiterApp = new RecruiterApp($this->session);
     $request_auth_url = $recruiterApp->getRequestAppAuthUrl();
-    if ($request_auth_url == null) {
-      return showError();
+    if (is_null($request_auth_url)) {
+      return $this->showError();
     }
     return header("Location: ".$request_auth_url);
   }

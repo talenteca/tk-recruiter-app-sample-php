@@ -4,7 +4,7 @@ class RecruiterApp {
 
   const TALENTECA_BASE_URL = 'https://dev.talenteca.com';
 
-  const RECRUITER_APP_ID = 'tkrai:tk-recruiter-app-sample-sandbox:89425260059766841857197795291062';
+  const RECRUITER_APP_ID = 'Xtkrai:tk-recruiter-app-sample-sandbox:89425260059766841857197795291062';
   const RECRUITER_APP_SECRET = 'JGQyU1VyVXpzTzJGbURHWExMZFV1OFE9PSRiRzB4N1lCYlNCbkRyTmg3WmVCQS9HVGNhTHl0QzBEdUtFK29scGIzTXNJUFIrcUVsSDRLTno0a25GTTdNTUlNTFNuYzRhbVJWbDBjVzB3cVEvR29lTmZBUmU5Tzgya0NyR04xcDd3ODBsTk8wK0Y4RzlGcjVqS3l0N0ZRbDluYVFxajNzWWJTU3N2S254ajlOSDM1MGNZSnY2QW5zK3dqMTlmU21RemUydU5KUnFKNnI4emdaeTE0SVZPYmpJbnArbkYxdldVanJBaHc1WUZ5elBHc0pyS3hDcDFrOFBwUUhwSnR0Wk9JenpQb3VHY0xWYTdUdWJES0dvVHFzcmtmUlFhNnZqS0JQSTM1S1E1WVE5aXRvbzlsaXB0N2c2ZEk1TlFFWUVQZUdZbFl5UnQ1ZWN3ZlI1VkFuZlBvaXp5NmRQc2w5VFY4d2dNQStjM3JBVFp2RzU1aEpWa01QMXdwRis1UXdLSlVTcE9rdUlYT0FDajZKanlMUHdrbWxUQTN0dTZRbmpUbUU2OURNN05pc2ZicWY0NU52OVZRczZpQ1M0QnhYcllxSkhLbi9xR21aTlJTTHBjQ3ZEemtkcWE3dW4xWlljd1hubzFGZ2RySkMwTmlIMjNHUVVVSEhUbS9XczNzSDJGaFRuWT0=';
 
   public function __construct(&$session)
@@ -14,13 +14,13 @@ class RecruiterApp {
 
   public function getRequestAppAuthUrl()
   {
-    $challenge_code = getChallengeCode();
-    if ($challenge_code == null) {
+    $challenge_code = $this->getChallengeCode();
+    if (is_null($challenge_code)) {
       return null;
     }
     $challenge_code_encoded = urlencode($challenge_code);
     $recruiter_app_id_encoded = urlencode(self::RECRUITER_APP_ID);
-    return "/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded;
+    return self::TALENTECA_BASE_URL."/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded;
   }
 
   private function getChallengeCode() {
