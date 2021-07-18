@@ -2,8 +2,10 @@
 
 class Controller {
 
-  public function __construct(&$session)
+  public function __construct($get, $post, &$session)
   {
+    $this->get = $get;
+    $this->post = $post;
     $this->session = &$session;
   }
 
@@ -15,6 +17,26 @@ class Controller {
       return $this->showError();
     }
     return header("Location: ".$request_auth_url);
+  }
+
+  public function receiveAuth()
+  {
+    $recruiterApp = new RecruiterApp($this->session);
+    $status = $this->get['status'];
+    $recruiterAppId = $this->get['recruiter_app_id'];
+    $challengeCode = $this->get['challenge_code'];
+    $recruiterId = $this->get['recruiter_id'];
+    if ($status == "ok")
+    {
+      $access_token = $recruiterApp->getAccessToken($challengeCode);
+      $this->session['recruiter_app_access_token'] = $access_token;
+      return header("Location: /?action=list-job-ads");
+    } else
+    {
+      $this->session['error_message'] = "Authorization denied";
+      $this->session['error_detail'] = $status;
+      return $this->showError();
+    }
   }
 
   public function start()

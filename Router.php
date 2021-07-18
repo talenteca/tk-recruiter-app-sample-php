@@ -4,7 +4,7 @@ class Router {
 
   public function __construct($get, $post, &$session)
   {
-    $controller = new Controller($session);
+    $controller = new Controller($get, $post, $session);
 
     if(isset($get['action']))
     {
@@ -22,8 +22,12 @@ class Router {
         $controller->requestAuth();
         break;
 
+        case 'receive-auth':
+        $controller->receiveAuth();
+        break;
+
         case 'error':
-        $controller->showError($session);
+        $controller->showError();
         break;
       
         default:

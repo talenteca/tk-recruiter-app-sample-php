@@ -53,6 +53,11 @@ class RecruiterApp {
     return null;
   }
 
+  public function getAccessToken($codeChallenge)
+  {
+    return "FIXME";
+  }
+
   private function getRedirectCallbackUrl()
   {
     $schema = "http";
