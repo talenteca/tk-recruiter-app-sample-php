@@ -19,7 +19,7 @@
 </div>
 <div class="uk-section uk-section-muted">
     <div class="uk-container uk-align-right">
-        <h3>1. Sign up for a local user</h3>
+        <h3 id="demo-1">1. Sign up for a local user</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
           <div class="uk-margin-top">
                 <p>When you integrate with Talenteca you will link your current users accounts with Talenteca recruiters accounts and for that we need a user in first place, so here we create a local user.</p>
@@ -33,7 +33,7 @@
 </div>
 <div class="uk-section uk-section-default">
     <div class="uk-container uk-align-right">
-        <h3>2. Prepare for authentication</h3>
+        <h3 id="demo-2">2. Prepare for authentication</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
           <div class="uk-margin-top">
                 <p>With a local user in place we can prepare a secure authentication request.</p>

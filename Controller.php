@@ -93,7 +93,7 @@ class Controller {
       $this->session['message_title'] = "Signup";
       $this->session['message_text'] = "User already created";
       $this->session['message_detail'] = "User ID: ".$user['user_id'].", user email: ".$user['user_email'].", user fullname: ".$user['user_fullname'];
-      $this->session['return_action'] = "/?action=demo";
+      $this->session['return_action'] = "/?action=demo#demo-2";
       return $this->showMessage();
     }
     require_once('layout/views/demo-signup.php');
@@ -122,7 +122,7 @@ class Controller {
     $this->session['message_title'] = "Signup";
     $this->session['message_text'] = "User created";
     $this->session['message_detail'] = "User ID: ".$user['user_id'].", user email: ".$user['user_email'].", user fullname: ".$user['user_fullname'];
-    $this->session['return_action'] = "/?action=demo";
+    $this->session['return_action'] = "/?action=demo#demo-2";
     return $this->showMessage();
   }
 

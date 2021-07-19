@@ -23,12 +23,12 @@
   </div>
 </div>
 <div class="uk-section uk-section-muted">
-  <div class="uk-container uk-container-small uk-flex">
-    <div class="uk-width-1-1">
-      <a class="uk-width-1-2 uk-button uk-button-primary uk-align-center" href="<?= $return_action ?>">Try again</a>
+  <div class="uk-container uk-flex uk-flex-center">
+    <div>
+      <a class="uk-button uk-button-default" href="/?action=restart">Restart demo</a>
     </div>
-    <p>
-      <a class="uk-button uk-button-primary uk-align-right" href="/?action=restart">Restart demo</a>
-    </p>
+    <div>
+      <a class="uk-button uk-margin-left uk-button-primary" href="<?= $return_action ?>">Try again</a>
+    </div>
   </div>
 </div>
