@@ -25,7 +25,15 @@ class Router {
         case 'demo':
         $controller->demo();
         break;
-            
+
+        case 'signup':
+        $controller->signup();
+        break;
+
+        case 'demo-signup':
+        $controller->demoSignup();
+        break;
+                  
         case 'list-job-ads':
         $controller->listJobAds();
         break;

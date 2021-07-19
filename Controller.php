@@ -84,6 +84,48 @@ class Controller {
     require_once('layout/views/demo.php');
   }
 
+  public function demoSignup()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (!is_null($user))
+    {
+      $this->session['message_title'] = "Signup";
+      $this->session['message_text'] = "User already created";
+      $this->session['message_detail'] = "User ID: ".$user['user_id'].", user email: ".$user['user_email'].", user fullname: ".$user['user_fullname'];
+      $this->session['return_action'] = "/?action=demo";
+      return $this->showMessage();
+    }
+    require_once('layout/views/demo-signup.php');
+  }
+
+  public function signup()
+  {
+    if (!isset($this->post['user_email']) || $this->post['user_email'] == "")
+    {
+      $this->session['error_message'] = 'User email is required';
+      $this->session['return_action'] = '/?action=demo-signup';
+      return $this->showError();
+    }
+    if (!isset($this->post['user_fullname']) || $this->post['user_fullname'] == "")
+    {
+      $this->session['error_message'] = 'User fullname is required';
+      $this->session['return_action'] = '/?action=demo-signup';
+      return $this->showError();
+    }
+    $user = [
+      'user_email'=>$this->post['user_email'],
+      'user_fullname'=>$this->post['user_fullname']
+    ];
+    $users = new Users($this->session);
+    $users->recordUser($user);
+    $this->session['message_title'] = "Signup";
+    $this->session['message_text'] = "User created";
+    $this->session['message_detail'] = "User ID: ".$user['user_id'].", user email: ".$user['user_email'].", user fullname: ".$user['user_fullname'];
+    $this->session['return_action'] = "/?action=demo";
+    return $this->showMessage();
+  }
+
   public function listJobAds()
   {
     if(!isset($this->session['recruiter_app_access_token'])) {
@@ -96,17 +138,31 @@ class Controller {
 
   public function restart()
   {
+    unset($this->session['user']);
     unset($this->session['recruiter_app_info']);
     unset($this->session['recruiter_app_access_token']);
     unset($this->session['error_message']);
     unset($this->session['error_detail']);
+    unset($this->session['message_title']);
+    unset($this->session['message_text']);
+    unset($this->session['message_detail']);
     return header("Location: /?action=start");
+  }
+
+  public function showMessage()
+  {
+    $message_title = $this->session['message_title'];
+    $message_text = $this->session['message_text'];
+    $message_detail = $this->session['message_detail'];
+    $return_action = $this->session['return_action'];
+    require_once('layout/views/message.php');
   }
 
   public function showError()
   {
     $error_message = $this->session['error_message'];
     $error_detail = $this->session['error_detail'];
+    $return_action = $this->session['return_action'];
     require_once('layout/views/error.php');
   }
 
