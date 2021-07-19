@@ -25,7 +25,7 @@
 <div class="uk-section uk-section-muted">
   <div class="uk-container uk-container-small uk-flex">
     <div class="uk-width-1-1">
-      <a class="uk-width-1-2 uk-button uk-button-primary uk-align-center" href="/">Try again</a>
+      <a class="uk-width-1-2 uk-button uk-button-primary uk-align-center" href="/?action=restart">Try again</a>
     </div>
   </div>
 </div>

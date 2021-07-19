@@ -14,6 +14,18 @@ class Router {
         $controller->start();
         break;
 
+        case 'restart':
+        $controller->restart();
+        break;
+
+        case 'start-demo':
+        $controller->startDemo();
+        break;
+
+        case 'demo':
+        $controller->demo();
+        break;
+            
         case 'list-job-ads':
         $controller->listJobAds();
         break;

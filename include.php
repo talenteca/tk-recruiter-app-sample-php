@@ -2,4 +2,5 @@
 include('Router.php');
 include('Controller.php');
 include('JobAds.php');
-include('RecruiterApp.php');
+include('Auth.php');
+include('Config.php');
