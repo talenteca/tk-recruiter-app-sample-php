@@ -126,6 +126,53 @@ class Controller {
     return $this->showMessage();
   }
 
+  public function demoPrepareAuth()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "Prepare Auth";
+      $this->session['message_text'] = "No user created, please run the sign up step first.";
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    require_once('layout/views/demo-prepare-auth.php');
+  }
+
+  public function prepareAuth()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "Prepare Auth";
+      $this->session['message_text'] = "No user created, please run the sign up step first.";
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    if (isset($this->session['recruiter_app_auth_url']))
+    {
+      $this->session['message_title'] = "Prepare Auth";
+      $this->session['message_text'] = "Auth request already prepared. Now you can continue with the next step.";
+      $this->session['message_detail'] = $this->session['recruiter_app_auth_url'];
+      $this->session['return_action'] = "/?action=demo#demo-3";
+      return $this->showMessage();
+    }
+    $auth = new Auth($this->session);
+    $recruiter_app_auth_url = $auth->getRequestAppAuthUrl();
+    if (is_null($recruiter_app_auth_url)) {
+      $this->session['return_action'] = "/?action=demo#demo-2";
+      return $this->showError();
+    }
+    $this->session['recruiter_app_auth_url'] = $recruiter_app_auth_url;
+    $this->session['message_title'] = "Prepare Auth";
+    $this->session['message_text'] = "Auth request URL successfully created. Give it a check to the URL, especially to the challenge code and the redirect parameters.";
+    $this->session['message_detail'] = $recruiter_app_auth_url;
+    $this->session['return_action'] = "/?action=demo#demo-3";
+    return $this->showMessage();
+  }
+
   public function listJobAds()
   {
     if(!isset($this->session['recruiter_app_access_token'])) {
@@ -140,6 +187,7 @@ class Controller {
   {
     unset($this->session['user']);
     unset($this->session['recruiter_app_info']);
+    unset($this->session['recruiter_app_auth_url']);
     unset($this->session['recruiter_app_access_token']);
     unset($this->session['error_message']);
     unset($this->session['error_detail']);

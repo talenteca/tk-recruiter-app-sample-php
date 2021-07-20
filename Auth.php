@@ -63,7 +63,7 @@ class Auth {
     $url = "https://dev.talenteca.com/api/v1/oauth/recruiter/challenge-code";
     $data = [
       'app_id' => $this->config->getRecruiterAppId(),
-      'app_secret' => $this->config-getRecruiterAppSecret()
+      'app_secret' => $this->config->getRecruiterAppSecret()
     ];
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_POST, true);

@@ -22,7 +22,7 @@
         <h3 id="demo-1">1. Sign up for a local user</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
           <div class="uk-margin-top">
-                <p>When you integrate with Talenteca you will link your current users accounts with Talenteca recruiters accounts and for that we need a user in first place, so here we create a local user.</p>
+                <p>When you integrate with Talenteca you will link your current users accounts with Talenteca recruiters accounts and for that, we need a user in first place, so here we create a local user.</p>
                 <p>This local user is just a demo but in your real application it will have your internal credentials, sign up and login full process.</p>
             </div>
             <div>
@@ -40,28 +40,28 @@
                 <p>Technically speaking, the authentication request is based on a random text secret called a challenge code. To get a new challenge code you may call Talenteca using your valid recruiter app credentials.</p>
             </div>
             <div>
-                <p class="uk-margin-top uk-margin-left"><button class="uk-button uk-button-primary" type="button">Prepare</button></p>
+                <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-prepare-auth">Prepare</a></p>
             </div>
         </div>
     </div>
 </div>
 <div class="uk-section uk-section-muted">
     <div class="uk-container uk-align-right">
-        <h3>3. Request permission</h3>
+        <h3 id="demo-3">3. Request permission</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
           <div class="uk-margin-top">
                 <p>Using the prepared authentication request we can ask permission to the recruiter for using your recruiter app.</p>
                 <p>For getting this permission your user will be redirected to Talenteca to explain what your recruiter app is about.
             </div>
             <div>
-                <p class="uk-margin-top uk-margin-left"><button class="uk-button uk-button-primary" type="button">Request</button></p>
+                <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-request-auth">Request</a></p>
             </div>
         </div>
     </div>
 </div>
 <div class="uk-section uk-section-default">
     <div class="uk-container uk-align-right">
-        <h3>4. Create an access token</h3>
+        <h3 id="demo-4">4. Create an access token</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
             <div class="uk-margin-top">
                 <p>If the recruiter grants permission to use your app, we can request an access token.</p>
@@ -75,7 +75,7 @@
 </div>
 <div class="uk-section uk-section-muted">
     <div class="uk-container uk-align-right">
-        <h3>5. Load job ads list</h3>
+        <h3 id="demo-5">5. Load job ads list</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
             <div class="uk-margin-top">
               <p>Using the secured access token we can try to list the recruiter job ads.</p>

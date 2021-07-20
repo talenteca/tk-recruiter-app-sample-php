@@ -33,13 +33,25 @@ class Router {
         case 'demo-signup':
         $controller->demoSignup();
         break;
-                  
-        case 'list-job-ads':
-        $controller->listJobAds();
+
+        case 'prepare-auth':
+        $controller->prepareAuth();
+        break;
+  
+        case 'demo-prepare-auth':
+        $controller->demoPrepareAuth();
         break;
   
         case 'request-auth':
         $controller->requestAuth();
+        break;
+
+        case 'demo-request-auth':
+        $controller->demoRequestAuth();
+        break;
+  
+        case 'list-job-ads':
+        $controller->listJobAds();
         break;
 
         case 'receive-auth':

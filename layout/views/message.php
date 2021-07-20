@@ -1,8 +1,3 @@
-<style>
-  .tk-text-code {
-    font-family: 'monospace';
-  }
-</style>
 <div class="uk-section uk-section-primary">
   <div class="uk-container uk-container-small">
     <h1>Talenteca Recruiter app integration demo</h1>
