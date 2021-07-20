@@ -42,12 +42,12 @@ class Router {
         $controller->demoPrepareAuth();
         break;
   
-        case 'request-auth':
-        $controller->requestAuth();
+        case 'request-permission':
+        $controller->requestPermission();
         break;
 
-        case 'demo-request-auth':
-        $controller->demoRequestAuth();
+        case 'demo-request-permission':
+        $controller->demoRequestPermission();
         break;
   
         case 'list-job-ads':

@@ -9,23 +9,12 @@ class Controller {
     $this->session = &$session;
   }
 
-  public function requestAuth()
-  {
-    $auth = new Auth($this->session);
-    $request_auth_url = $auth->getRequestAppAuthUrl();
-    if (is_null($request_auth_url)) {
-      return $this->showError();
-    }
-    return header("Location: ".$request_auth_url);
-  }
-
   public function receiveAuth()
   {
     $auth = new Auth($this->session);
     $status = $this->get['status'];
     $recruiterAppId = $this->get['recruiter_app_id'];
     $challengeCode = $this->get['challenge_code'];
-    $recruiterId = $this->get['recruiter_id'];
     if ($status == "ok")
     {
       $access_token = $auth->getAccessToken($challengeCode);
@@ -160,7 +149,7 @@ class Controller {
       return $this->showMessage();
     }
     $auth = new Auth($this->session);
-    $recruiter_app_auth_url = $auth->getRequestAppAuthUrl();
+    $recruiter_app_auth_url = $auth->getRequestAppAuthUrl($user);
     if (is_null($recruiter_app_auth_url)) {
       $this->session['return_action'] = "/?action=demo#demo-2";
       return $this->showError();
@@ -171,6 +160,32 @@ class Controller {
     $this->session['message_detail'] = $recruiter_app_auth_url;
     $this->session['return_action'] = "/?action=demo#demo-3";
     return $this->showMessage();
+  }
+
+  public function demoRequestPermission()
+  {
+    if (!isset($this->session['recruiter_app_auth_url']))
+    {
+      $this->session['message_title'] = "Request Permission";
+      $this->session['message_text'] = "No auth request URL created, please try to run the prepare auth step first.";
+      $this->session['return_action'] = "/?action=demo#demo-2";
+      return $this->showMessage();
+    }
+    $recruiter_app_auth_url = $this->session['recruiter_app_auth_url'];
+    require_once('layout/views/demo-request-permission.php');
+  }
+
+  public function requestPermission()
+  {
+    if (!isset($this->session['recruiter_app_auth_url']))
+    {
+      $this->session['message_title'] = "Request Permission";
+      $this->session['message_text'] = "No auth request URL created, please try to run the prepare auth step first.";
+      $this->session['return_action'] = "/?action=demo#demo-2";
+      return $this->showMessage();
+    }
+    $recruiter_app_auth_url = $this->session['recruiter_app_auth_url'];
+    return header("Location: ".$recruiter_app_auth_url);
   }
 
   public function listJobAds()
@@ -194,6 +209,8 @@ class Controller {
     unset($this->session['message_title']);
     unset($this->session['message_text']);
     unset($this->session['message_detail']);
+    unset($this->session['user_ids_by_challenge_code']);
+    unset($this->session['access_tokens_by_user_id']);
     return header("Location: /?action=start");
   }
 

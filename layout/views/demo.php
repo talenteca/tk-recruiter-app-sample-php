@@ -50,11 +50,11 @@
         <h3 id="demo-3">3. Request permission</h3>
         <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
           <div class="uk-margin-top">
-                <p>Using the prepared authentication request we can ask permission to the recruiter for using your recruiter app.</p>
+                <p>Using the prepared authentication request URL we can ask permission to the recruiter for using your recruiter app.</p>
                 <p>For getting this permission your user will be redirected to Talenteca to explain what your recruiter app is about.
             </div>
             <div>
-                <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-request-auth">Request</a></p>
+                <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-request-permission">Request</a></p>
             </div>
         </div>
     </div>

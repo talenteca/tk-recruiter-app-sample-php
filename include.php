@@ -5,4 +5,4 @@ include('JobAds.php');
 include('Auth.php');
 include('Config.php');
 include('Users.php');
-
+include('Db.php');

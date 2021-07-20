@@ -47,9 +47,10 @@ class Auth {
     return null;
   }
 
-  public function getRequestAppAuthUrl()
+  public function getRequestAppAuthUrl($user)
   {
-    $challenge_code = $this->getChallengeCode();
+    $user_id = $user['user_id'];
+    $challenge_code = $this->generateChallengeCode($user_id);
     if (is_null($challenge_code)) {
       return null;
     }
@@ -59,7 +60,7 @@ class Auth {
     return "https://dev.talenteca.com/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded."&redirect=".$redirect_callback_url;
   }
 
-  private function getChallengeCode() {
+  private function generateChallengeCode($user_id) {
     $url = "https://dev.talenteca.com/api/v1/oauth/recruiter/challenge-code";
     $data = [
       'app_id' => $this->config->getRecruiterAppId(),
@@ -80,6 +81,8 @@ class Auth {
       if ($json->status == "ok")
       {
         $challenge_code = $json->challenge_code;
+        $db = new Db($this->session);
+        $db->recordUserIdForChallengeCode($challenge_code, $user_id);
         return $challenge_code;
       }
     }    
