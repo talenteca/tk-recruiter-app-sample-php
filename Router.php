@@ -54,8 +54,8 @@ class Router {
         $controller->listJobAds();
         break;
 
-        case 'receive-auth':
-        $controller->receiveAuth();
+        case 'recieve-auth':
+        $controller->recieveAuth();
         break;
 
         case 'error':

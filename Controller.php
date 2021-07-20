@@ -9,7 +9,7 @@ class Controller {
     $this->session = &$session;
   }
 
-  public function receiveAuth()
+  public function recieveAuth()
   {
     $auth = new Auth($this->session);
     $status = $this->get['status'];
@@ -17,13 +17,35 @@ class Controller {
     $challengeCode = $this->get['challenge_code'];
     if ($status == "ok")
     {
-      $access_token = $auth->getAccessToken($challengeCode);
-      $this->session['recruiter_app_access_token'] = $access_token;
-      return header("Location: /?action=list-job-ads");
-    } else
+      $config = new Config($this->session);
+      $current_recruiter_app_id = $config->getRecruiterAppId();
+      if ($recruiterAppId != $current_recruiter_app_id)
+      {
+        $this->session['error_message'] = "Invalid recruiter app ID recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_detail'] = "The recruiter app ID revieved is ".$recruiterAppId." and the current recruiter app ID is ".$current_recruiter_app_id;
+        $this->session['return_action'] = "/?action=demo-request-permission";
+        return $this->showError();
+      }
+      $db = new Db($this->session);
+      $userId = $db->getUserIdForChallengeCode($challengeCode);
+      if (is_null($userId))
+      {
+        $this->session['error_message'] = "Unable to get the user ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+        $this->session['return_action'] = "/?action=demo-request-permission";
+        return $this->showError();
+      }
+      $this->session['message_title'] = "Permission granted";
+      $this->session['message_text'] = "Talenteca has approved your recruiter app permission request, now you can get an access token to continue.";
+      $this->session['message_detail'] = "Permission granted for user ".$userId." linked with challenge code: ".$challengeCode;
+      $this->session['return_action'] = "/?action=demo#demo-4";
+      return $this->showMessage();
+    }
+    else
     {
-      $this->session['error_message'] = "Authorization denied";
+      $this->session['error_message'] = "Permission denied, either the Talenteca recruiter or the Talenteca security system revoke the permission to continue.";
       $this->session['error_detail'] = $status;
+      $this->session['return_action'] = "/?action=demo-request-permission";
       return $this->showError();
     }
   }

@@ -103,7 +103,7 @@ class Auth {
     {
       $schema = "https";
     }
-    return $schema."://".$_SERVER['HTTP_HOST']."/?action=receive-auth";
+    return $schema."://".$_SERVER['HTTP_HOST']."/?action=recieve-auth";
   }
 
 }
