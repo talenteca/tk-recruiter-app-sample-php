@@ -318,13 +318,19 @@ class Controller {
       $this->session['return_action'] = "/?action=demo#demo-5";
       return $this->showMessage();
     }
-    $accessToken = $auth->createAccessToken($codeChallenge, $talentecaRecruiterId);
-    $db->recordAccessTokenForUserId($access_token, $user_id);
-    $this->session['message_title'] = "Access token";
-    $this->session['message_text'] = "Access token successfully created. Now we can try to make calls to Talenteca in behalf of our local user.";
-    $this->session['message_detail'] = $recruiter_app_auth_url;
-    $this->session['return_action'] = "/?action=demo#demo-5";
-    return $this->showMessage();
+    $accessToken = $auth->createAccessToken($challengeCode, $talentecaRecruiterId);
+    if (is_null($accessToken))
+    {
+      $this->session['return_action'] = "/?action=demo#demo-3";
+      return $this->showError();
+    } else {
+      $db->recordAccessTokenForUserId($userId, $accessToken);
+      $this->session['message_title'] = "Access token";
+      $this->session['message_text'] = "Access token successfully created. Now we can try to make calls to Talenteca in behalf of our local user.";
+      $this->session['message_detail'] = "Access token created for local user ".$user_id;
+      $this->session['return_action'] = "/?action=demo#demo-5";
+      return $this->showMessage();
+      }
   }
 
   public function restart()
