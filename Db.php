@@ -9,6 +9,10 @@ class Db {
     {
       $this->session['user_ids_by_challenge_code'] = [];
     }
+    if (!isset($this->session['talenteca_recruiters_ids_by_challenge_code']))
+    {
+      $this->session['talenteca_recruiters_ids_by_challenge_code'] = [];
+    }
     if (!isset($this->session['access_tokens_by_user_id']))
     {
       $this->session['access_tokens_by_user_id'] = [];
@@ -18,6 +22,11 @@ class Db {
   public function recordUserIdForChallengeCode($challenge_code, $user_id)
   {
     $this->session['user_ids_by_challenge_code'][$challenge_code] = $user_id;
+  }
+
+  public function recordTalentecaRecruiterIdForChallengeCode($challenge_code, $talenteca_recruiter_id)
+  {
+    $this->session['talenteca_recruiters_ids_by_challenge_code'][$challenge_code] = $talenteca_recruiter_id;
   }
 
   public function recordAccessTokenForUserId($user_id, $access_token)
@@ -32,6 +41,15 @@ class Db {
       return null;
     }
     return $this->session['user_ids_by_challenge_code'][$challenge_code];
+  }
+
+  public function getTalentecaRecruiterIdForChallengeCode($challenge_code)
+  {
+    if (!isset($this->session['talenteca_recruiters_ids_by_challenge_code'][$challenge_code]))
+    {
+      return null;
+    }
+    return $this->session['talenteca_recruiters_ids_by_challenge_code'][$challenge_code];
   }
 
   public function getAccessTokenForUserId($user_id)

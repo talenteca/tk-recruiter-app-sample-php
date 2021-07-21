@@ -68,7 +68,7 @@
                 <p>The access token is the most sensible part of the integration so it should be carefully linked to your internal user account in encrypted form and stored securely.
             </div>
             <div>
-                <p class="uk-margin-top uk-margin-left"><button class="uk-button uk-button-primary" type="button">Create</button></p>
+            <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-create-access-token">Create</a></p>
             </div>
         </div>
     </div>

@@ -85,13 +85,13 @@ class Auth {
         $db->recordUserIdForChallengeCode($challenge_code, $user_id);
         return $challenge_code;
       }
-    }    
+    }
     $this->session['error_message'] = "Unable to get challenge code to start request authentication";
     $this->session['error_detail'] = $response;
     return null;
   }
 
-  public function getAccessToken($codeChallenge)
+  public function createAccessToken($codeChallenge, $talentecaRecruiterId)
   {
     return "FIXME";
   }

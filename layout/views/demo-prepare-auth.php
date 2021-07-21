@@ -38,7 +38,7 @@
       </form>
     </div>
     <p class="uk-text-small">
-      <strong>NOTE:</strong> the code of this call is at <code class="uk-text-emphasis">getRequestAppAuthUrl()</code> and <code class="uk-text-emphasis">generateChallengeCode()</code> in file <code class="uk-text-emphasis">Auth.php</code>, please give it a check.
+      <strong>NOTE:</strong> the code of this call is at <code class="uk-text-emphasis">getRequestAppAuthUrl()</code> and <code class="uk-text-emphasis">generateChallengeCode()</code> in the file <code class="uk-text-emphasis">Auth.php</code>, please give it a check.
     </p>
   </div>
 </div>

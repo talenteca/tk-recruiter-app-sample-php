@@ -49,7 +49,15 @@ class Router {
         case 'demo-request-permission':
         $controller->demoRequestPermission();
         break;
-  
+
+        case 'create-access-token':
+        $controller->createAccessToken();
+        break;
+    
+        case 'demo-create-access-token':
+        $controller->demoCreateAccessToken();
+        break;
+    
         case 'list-job-ads':
         $controller->listJobAds();
         break;
