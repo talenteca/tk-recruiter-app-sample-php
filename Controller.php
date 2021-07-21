@@ -241,13 +241,63 @@ class Controller {
     return header("Location: ".$recruiter_app_auth_url);
   }
 
+  public function demoListJobAds()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4 ";
+      return $this->showMessage();
+    }
+    require_once('layout/views/demo-list-job-ads.php');
+  }
+
   public function listJobAds()
   {
-    if(!isset($this->session['recruiter_app_access_token'])) {
-      return header("Location: /?action=request-auth");
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
     }
-    $job_ads = new JobAds;
-    $job_ads = $job_ads->getAllJobAds();
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4 ";
+      return $this->showMessage();
+    }
+    $recruiter = new Recruiter($this->session);
+    $allJobAds = $recruiter->getAllJobAds($accessToken);
+    if (is_null($allJobAds)) {
+      $this->session['return_action'] = "/?action=demo-list-job-ads";
+      return $this->showError();
+    }
+    $activeJobAds = $allJobAds['activeJobAds'];
+    $inactiveJobAds = $allJobAds['inactiveJobAds'];
     require_once('layout/views/job-ads-list.php');
   }
 
@@ -308,16 +358,16 @@ class Controller {
       $this->session['return_action'] = "/?action=demo#demo-3";
       return $this->showError();
     }
-    $auth = new Auth($this->session);
     $currentAccessToken = $db->getAccessTokenForUserId($userId);
     if (!is_null($currentAccessToken))
     {
       $this->session['message_title'] = "Access token";
       $this->session['message_text'] = "The access token was already created. Now we can try to make calls to Talenteca in behalf of our local user.";
-      $this->session['message_detail'] = "Access token linked to the local user ".$user_id;
+      $this->session['message_detail'] = "Access token linked to the local user ".$userId;
       $this->session['return_action'] = "/?action=demo#demo-5";
       return $this->showMessage();
     }
+    $auth = new Auth($this->session);
     $accessToken = $auth->createAccessToken($challengeCode, $talentecaRecruiterId);
     if (is_null($accessToken))
     {
@@ -327,7 +377,7 @@ class Controller {
       $db->recordAccessTokenForUserId($userId, $accessToken);
       $this->session['message_title'] = "Access token";
       $this->session['message_text'] = "Access token successfully created. Now we can try to make calls to Talenteca in behalf of our local user.";
-      $this->session['message_detail'] = "Access token created for local user ".$user_id;
+      $this->session['message_detail'] = "Access token created for local user ".$userId;
       $this->session['return_action'] = "/?action=demo#demo-5";
       return $this->showMessage();
       }

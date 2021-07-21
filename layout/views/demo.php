@@ -68,7 +68,7 @@
                 <p>The access token is the most sensible part of the integration so it should be carefully linked to your internal user account in encrypted form and stored securely.
             </div>
             <div>
-            <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-create-access-token">Create</a></p>
+              <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-create-access-token">Create</a></p>
             </div>
         </div>
     </div>
@@ -82,7 +82,7 @@
               <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
             </div>
             <div>
-                <p class="uk-margin-top uk-margin-left"><button class="uk-button uk-button-primary" type="button">Load</button></p>
+            <p class="uk-margin-top uk-margin-left"><a class="uk-button uk-button-primary" href="/?action=demo-list-job-ads">Load</a></p>
             </div>
         </div>
     </div>
