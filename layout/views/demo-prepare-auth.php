@@ -42,10 +42,13 @@
     </p>
   </div>
 </div>
-<div class="uk-section uk-section-muted">
-  <div class="uk-container uk-container-small">
-    <p>
-      Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a>
-    </p>
+<div class="uk-section uk-section-secondary">
+  <div class="uk-container uk-flex uk-flex-center">
+    <div class="uk-flex-wrap uk-margin-right uk-width-1-1@s uk-width-auto@m">
+      <span><a class="uk-button uk-button-small uk-button-default" href="/?action=restart">Restart demo</a></span>
+    </div>
+    <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
+      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+    </div>
   </div>
 </div>

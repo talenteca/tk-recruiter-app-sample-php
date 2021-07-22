@@ -53,30 +53,32 @@
       <?= $errorMessage ?>
     </div>
     <?php } ?>
-    <div class="uk-grid">
-      <form class="uk-width-2-3@l" action="/?action=start-demo" method="post">
+    <div class="uk-width-2-3@l">
+      <form action="/?action=start-demo" method="post">
         <fieldset class="uk-fieldset">
-          <div class="uk-margin">
-            <legend class="uk-legend uk-text-small uk-text-bold">Recruiter app ID</legend>
-            <input class="uk-input" name="recruiter_app_id" type="text" oninput="updateCredentials();" value="<?= $recruiterAppId ?>">
-          </div>
-          <div class="uk-margin">
-            <legend class="uk-legend uk-text-small uk-text-bold">Recruiter app secret</legend>
-            <input class="uk-input" name="recruiter_app_secret" type="password" oninput="updateCredentials();" value="<?= $recruiterAppSecret ?>">
-          </div>
-          </div class="uk-margin">
-            <label><input class="radio_my_credentials uk-radio" type="radio" name="credentials_set" checked onclick="useMyCredentials();"> Use my credentials</label>
-            <label><input class="radio_test_credentials uk-radio" type="radio" name="credentials_set" onclick="useTestCredentials();"> Use test credentials</label>
-          </div>
-          <div class="uk-margin">
-            <input class="uk-button uk-button-primary uk-align-center" type="submit" value="Start Demo">
+          <div>
+            <div class="uk-margin">
+              <legend class="uk-legend uk-text-small uk-text-bold">Recruiter app ID</legend>
+              <input class="uk-input" name="recruiter_app_id" type="text" oninput="updateCredentials();" value="<?= $recruiterAppId ?>">
+            </div>
+            <div class="uk-margin">
+              <legend class="uk-legend uk-text-small uk-text-bold">Recruiter app secret</legend>
+              <input class="uk-input" name="recruiter_app_secret" type="password" oninput="updateCredentials();" value="<?= $recruiterAppSecret ?>">
+            </div>
+            </div class="uk-margin">
+              <label><input class="radio_my_credentials uk-radio" type="radio" name="credentials_set" checked onclick="useMyCredentials();"> Use my credentials</label>
+              <label><input class="radio_test_credentials uk-radio" type="radio" name="credentials_set" onclick="useTestCredentials();"> Use test credentials</label>
+            </div>
+            <div class="uk-margin uk-width-2-3@l uk-padding uk-padding-remove-bottom">
+              <input class="uk-button uk-align-center uk-button-primary" type="submit" value="Start Demo">
+            </div>
           </div>
         </fieldset>
       </form>
     </div>
   </div>
 </div>
-<div class="uk-section uk-section-muted">
+<div class="uk-section uk-section-secondary">
   <div class="uk-container uk-container-small">
     <p>
       For requesting your credentials please write to <a href="mailto:soporte@talenteca.com">soporte@talenteca.com</a>
