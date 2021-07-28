@@ -25,8 +25,65 @@
             <input class="uk-input" name="title" type="text">
           </div>
           <div class="uk-margin">
-            <legend class="uk-legend uk-text-small uk-text-bold">User fullname</legend>
-            <input class="uk-input" name="user_fullname" type="text">
+            <legend class="uk-legend uk-text-small uk-text-bold">Salary (free text)</legend>
+            <input class="uk-input" name="salary" type="text">
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Custom company name (optional)</legend>
+            <input class="uk-input" name="custom_company_name" type="text">
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Category</legend>
+            <select class="uk-select" name="category">
+              <option value="" selected="selected" disabled="disabled"> -Seleccionar - </option>
+              <option value="Arquitectura">Arquitectura</option>
+              <option value="Arte / Diseño / Creativo">Arte / Diseño / Creativo</option>
+              <option value="Administrativo / Secretarial">Administrativo / Secretarial</option>
+              <option value="Atención al cliente">Atención al cliente (incluye meseros, recepcionistas, etc)</option>
+              <option value="Comercial / Ventas">Comercial / Ventas</option>
+              <option value="Contabilidad / Finanzas">Contabilidad / Finanzas</option>
+              <option value="Construcción">Construcción</option>
+              <option value="Dirección de empresas">Dirección de empresas</option>
+              <option value="Educación">Educación</option>
+              <option value="Estatal / Ministerios">Estatal / Ministerios</option>
+              <option value="Legal">Legal</option>
+              <option value="Logística / Transporte">Logística / Transporte</option>
+              <option value="Manufactura / Operaciones">Manufactura / Operaciones</option>
+              <option value="Marketing / RRPP / Comunicación">Marketing / RRPP / Comunicación</option>
+              <option value="Minas / Petroleo">Minas / Petroleo</option>
+              <option value="Recursos naturales">Recursos naturales</option>
+              <option value="Medicina / Salud">Medicina / Salud</option>
+              <option value="ONGs">ONGs</option>
+              <option value="Recursos humanos">Recursos humanos</option>
+              <option value="Turismo / Hotelería">Turismo / Hotelería</option>
+              <option value="Tecnología / Internet">Tecnología / Internet</option>
+            </select>
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Industry</legend>
+            <select class="uk-select" name="industry">
+              <option value="" selected="selected" disabled="disabled"> -Seleccionar - </option>
+              <option value="Automotriz">Automotriz</option>
+              <option value="Gestión Educativa">Gestión Educativa</option>
+              <option value="Hospitalidad">Hospitalidad</option>
+            </select>
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Education</legend>
+            <select class="uk-select" name="desired_candidate_education_level">
+              <option value="" selected="selected" disabled="disabled"> - Seleccionar - </option>
+              <option value="Básica">Básica</option>
+              <option value="Media Superior">Media Superior</option>
+              <option value="Superior - trunco">Superior - trunco</option>
+              <option value="Superior - cursando">Superior - cursando</option>
+              <option value="Superior - titulado">Superior - titulado</option>
+              <option value="Maestría">Maestría</option>
+              <option value="Doctorado">Doctorado</option>
+            </select>
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Position</legend>
+            <input class="uk-input" name="position" type="text">
           </div>
           <div class="uk-margin">
             <input class="uk-button uk-button-primary uk-align-center" type="submit" value="Create job ad">
