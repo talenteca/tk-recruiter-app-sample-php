@@ -87,6 +87,34 @@
     </div>
   </div>
 </div>
+<div class="uk-section uk-section-muted">
+  <div class="uk-container uk-width-2-3 uk-align-center">
+    <h3 id="demo-6">6. Create job ad</h3>
+    <div>
+      <div class="uk-padding">
+        <p>Using the secured access token we can try to list the recruiter job ads.</p>
+        <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
+      </div>
+      <div>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-create-job-ad">Create</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="uk-section uk-section-muted">
+  <div class="uk-container uk-width-2-3 uk-align-center">
+    <h3 id="demo-7">7. Activate job ad</h3>
+    <div>
+      <div class="uk-padding">
+        <p>Using the secured access token we can try to list the recruiter job ads.</p>
+        <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
+      </div>
+      <div>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-activate-job-ad">Activate</a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="uk-section uk-section-secondary">
   <div class="uk-container uk-flex uk-flex-center">
     <div class="uk-flex-wrap uk-margin-right uk-width-1-1@s uk-width-auto@m">

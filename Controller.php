@@ -287,7 +287,7 @@ class Controller {
       $this->session['message_title'] = "List job ads";
       $this->session['message_text'] = "No access token available, please create an access token to continue.";
       $this->session['message_detail'] = null;
-      $this->session['return_action'] = "/?action=demo#demo-4 ";
+      $this->session['return_action'] = "/?action=demo#demo-4";
       return $this->showMessage();
     }
     $recruiter = new Recruiter($this->session);
@@ -299,6 +299,154 @@ class Controller {
     $activeJobAds = $allJobAds['activeJobAds'];
     $inactiveJobAds = $allJobAds['inactiveJobAds'];
     require_once('layout/views/job-ads-list.php');
+  }
+
+  public function demoCreateJobAd()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4";
+      return $this->showMessage();
+    }
+    require_once('layout/views/demo-create-job-ad.php');
+  }
+
+  public function createJobAd()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "Create job ad";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "Create job ad";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4";
+      return $this->showMessage();
+    }
+    $recruiter = new Recruiter($this->session);
+    $jobAd = [
+      'title' => $this->post['title']
+    ];
+    $jobAdId = $recruiter->createJobAdInProgress($accessToken, $jobAd);
+    if (is_null($jobAdId)) {
+      $this->session['return_action'] = "/?action=demo-create-job-ad";
+      return $this->showError();
+    }
+    $this->session['job_ad_in_progress_id'] = $jobAdId;
+    $this->session['message_title'] = "Create job ad";
+    $this->session['message_text'] = "Job ad created with status 'in progress', now you can continue to active it.";
+    $this->session['message_detail'] = "Job ad ID: ".$jobAdId;
+    $this->session['return_action'] = "/?action=demo#demo-7";
+    return $this->showMessage();
+  }
+
+  public function demoActivateJobAd()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "List job ads";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4";
+      return $this->showMessage();
+    }
+    if (!isset($this->session['job_ad_in_progress_id'])) {
+      $this->session['message_title'] = "Activate job ad";
+      $this->session['message_text'] = "No job ad in progress found, please create a job ad to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-6";
+      return $this->showMessage();
+    }
+    $jobAdId = $this->session['job_ad_in_progress_id'];
+    $this->session['message_title'] = "Activate job ad";
+    $this->session['message_text'] = "Now you can activate the created job ad to move it from 'in progress' status to 'published' status.";
+    $this->session['message_detail'] = "Jod ad to activate: ".$jobAdId;
+    $this->session['return_action'] = "/?action=activate-job-ad";
+    return $this->showMessage();
+}
+
+  public function activateJobAd()
+  {
+    $users = new Users($this->session);
+    $user = $users->getCurrentUser();
+    if (is_null($user))
+    {
+      $this->session['message_title'] = "Create job ad";
+      $this->session['message_text'] = "No user in session, please run the first step.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-1";
+      return $this->showMessage();
+    }
+    $userId = $user['user_id'];
+    $db = new Db($this->session);
+    $accessToken = $db->getAccessTokenForUserId($userId);
+    if (is_null($accessToken))
+    {
+      $this->session['message_title'] = "Create job ad";
+      $this->session['message_text'] = "No access token available, please create an access token to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-4";
+      return $this->showMessage();
+    }
+    if (!isset($this->session['job_ad_in_progress_id'])) {
+      $this->session['message_title'] = "Activate job ad";
+      $this->session['message_text'] = "No job ad in progress found, please create a job ad to continue.";
+      $this->session['message_detail'] = null;
+      $this->session['return_action'] = "/?action=demo#demo-6";
+      return $this->showMessage();
+    }
+    $jobAdId = $this->session['job_ad_in_progress_id'];
+    $recruiter = new Recruiter($this->session);
+    $resultOk = $recruiter->activateJobAd($accessToken, $jobAdId);
+    if (!$resultOk) {
+      $this->session['return_action'] = "/?action=demo-activate-job-ad";
+      return $this->showError();
+    }
+    $this->session['message_title'] = "Activate job ad";
+    $this->session['message_text'] = "Job ad activated, now you can get a new list of job ads to check if it's OK.";
+    $this->session['message_detail'] = "Job ad activated ID: ".$jobAdId;
+    $this->session['return_action'] = "/?action=demo#demo-5";
+    return $this->showMessage();
   }
 
   public function demoCreateAccessToken()
@@ -397,6 +545,7 @@ class Controller {
     unset($this->session['user_ids_by_challenge_code']);
     unset($this->session['talenteca_recruiters_ids_by_challenge_code']);
     unset($this->session['access_tokens_by_user_id']);
+    unset($this->session['job_ad_in_progress_id']);
     unset($this->session['challenge_code_ready_for_access_token']);
     return header("Location: /?action=start");
   }

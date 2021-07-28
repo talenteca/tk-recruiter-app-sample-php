@@ -24,6 +24,13 @@
     <?php endforeach; ?>
   </div>
 </div>
+<div class="uk-section uk-section-muted">
+  <div class="uk-container uk-flex uk-flex-center">
+    <div>
+      <a class="uk-button uk-margin-left uk-button-primary" href="/?action=demo#demo-6">Continue</a>
+    </div>
+  </div>
+</div>
 <div class="uk-section uk-section-secondary">
   <div class="uk-container uk-flex uk-flex-center">
     <div class="uk-flex-wrap uk-margin-right uk-width-1-1@s uk-width-auto@m">

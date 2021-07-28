@@ -65,7 +65,23 @@ class Router {
         case 'list-job-ads':
         $controller->listJobAds();
         break;
+  
+        case 'demo-create-job-ad':
+        $controller->demoCreateJobAd();
+        break;
+  
+        case 'create-job-ad':
+        $controller->createJobAd();
+        break;
 
+        case 'demo-activate-job-ad':
+        $controller->demoActivateJobAd();
+        break;
+        
+        case 'activate-job-ad':
+        $controller->activateJobAd();
+        break;
+                  
         case 'recieve-auth':
         $controller->recieveAuth();
         break;
