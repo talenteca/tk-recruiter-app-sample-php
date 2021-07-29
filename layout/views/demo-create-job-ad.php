@@ -82,8 +82,24 @@
             </select>
           </div>
           <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Experience</legend>
+            <select class="uk-select" name="desired_candidate_experience_level">
+              <option value="" selected="selected" disabled="disabled"> - Seleccionar - </option>
+              <option value="Practicantes">Practicantes</option>
+              <option value="Nivel Inicial">Nivel Inicial</option>
+              <option value="Nivel Medio">Nivel Medio</option>
+              <option value="Nivel Experto">Nivel Experto</option>
+              <option value="Nivel Gerencial">Nivel Gerencial</option>
+              <option value="Nivel Alto Directivo">Nivel Alto Directivo</option>
+            </select>
+          </div>
+          <div class="uk-margin">
             <legend class="uk-legend uk-text-small uk-text-bold">Position</legend>
             <input class="uk-input" name="position" type="text">
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Description</legend>
+            <textarea class="uk-textarea" name="description"></textarea>
           </div>
           <div class="uk-margin">
             <input class="uk-button uk-button-primary uk-align-center" type="submit" value="Create job ad">

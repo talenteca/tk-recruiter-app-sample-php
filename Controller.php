@@ -354,11 +354,14 @@ class Controller {
     $jobAd = [
       'title' => $this->post['title'],
       'salary' => $this->post['salary'],
-      'position' => $this->post['position'],
       'custom_company_name' => $this->post['custom_company_name'],
       'category' => $this->post['category'],
       'industry' => $this->post['industry'],
-      'desired_candidate_education_level' => $this-post['desired_candidate_education_level']
+      'desired_candidate_education_level' => $this-post['desired_candidate_education_level'],
+      'desired_candidate_experience_level' => $this-post['desired_candidate_experience_level'],
+      'position' => $this->post['position'],
+      'description' => $this->post['description'],
+      'test' => true
     ];
     $jobAdId = $recruiter->createJobAdInProgress($accessToken, $jobAd);
     if (is_null($jobAdId)) {
