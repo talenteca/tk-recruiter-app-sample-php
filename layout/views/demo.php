@@ -121,7 +121,7 @@
       <span><a class="uk-button uk-button-small uk-button-default" href="/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
-      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+      <span>Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a></span>
     </div>
   </div>
 </div>

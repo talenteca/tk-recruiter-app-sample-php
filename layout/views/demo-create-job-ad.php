@@ -94,6 +94,19 @@
             </select>
           </div>
           <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Country</legend>
+            <select class="uk-select" name="country_code">
+              <option value="" selected="selected" disabled="disabled"> - Seleccionar - </option>
+              <option value="mx">México</option>
+              <option value="ec">Ecuador</option>
+              <option value="es">España</option>
+            </select>
+          </div>
+          <div class="uk-margin">
+            <legend class="uk-legend uk-text-small uk-text-bold">Postal code</legend>
+            <input class="uk-input" name="postal_code" type="text">
+          </div>
+          <div class="uk-margin">
             <legend class="uk-legend uk-text-small uk-text-bold">Position</legend>
             <input class="uk-input" name="position" type="text">
           </div>
@@ -115,7 +128,7 @@
       <span><a class="uk-button uk-button-small uk-button-default" href="/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
-      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+      <span>Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a></span>
     </div>
   </div>
 </div>

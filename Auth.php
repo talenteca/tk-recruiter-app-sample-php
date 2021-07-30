@@ -19,7 +19,7 @@ class Auth {
       $this->session['error_message'] = "The recruiter app ID is required";
       return null;
     }
-    $url = "https://dev.talenteca.com/api/v1/oauth/recruiter/recruiter-app-info";
+    $url = "https://www.talenteca.com/api/v1/oauth/recruiter/recruiter-app-info";
     $data = [
       'app_id' => $this->config->getRecruiterAppId()
     ];
@@ -57,11 +57,11 @@ class Auth {
     $challenge_code_encoded = urlencode($challenge_code);
     $recruiter_app_id_encoded = urlencode($this->config->getRecruiterAppId());
     $redirect_callback_url = urlencode($this->getRedirectCallbackUrl());
-    return "https://dev.talenteca.com/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded."&redirect=".$redirect_callback_url;
+    return "https://www.talenteca.com/auth/recruiter-app?recruiter_app_id=".$recruiter_app_id_encoded."&challenge_code=".$challenge_code_encoded."&redirect=".$redirect_callback_url;
   }
 
   private function generateChallengeCode($user_id) {
-    $url = "https://dev.talenteca.com/api/v1/oauth/recruiter/challenge-code";
+    $url = "https://www.talenteca.com/api/v1/oauth/recruiter/challenge-code";
     $data = [
       'app_id' => $this->config->getRecruiterAppId(),
       'app_secret' => $this->config->getRecruiterAppSecret()
@@ -93,7 +93,7 @@ class Auth {
 
   public function createAccessToken($challengeCode, $talentecaRecruiterId)
   {
-    $url = "https://dev.talenteca.com/api/v1/oauth/recruiter/access-token";
+    $url = "https://www.talenteca.com/api/v1/oauth/recruiter/access-token";
     $data = [
       'app_id' => $this->config->getRecruiterAppId(),
       'app_secret' => $this->config->getRecruiterAppSecret(),

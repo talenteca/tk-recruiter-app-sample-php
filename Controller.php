@@ -359,6 +359,8 @@ class Controller {
       'industry' => $this->post['industry'],
       'desired_candidate_education_level' => $this-post['desired_candidate_education_level'],
       'desired_candidate_experience_level' => $this-post['desired_candidate_experience_level'],
+      'country_code' => $this->post['country_code'],
+      'postal_code' => $this->post['postal_code'],
       'position' => $this->post['position'],
       'description' => $this->post['description'],
       'test' => true
