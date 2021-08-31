@@ -13,7 +13,7 @@
       We just need to use the user linked access token to call this URL:
     </p>
     <p>
-      <div class="uk-text-meta uk-text-break tk-text-code">https//www.talenteca.com/api/v1/recruiter/job-ad/list</div>
+      <div class="uk-text-meta uk-text-break tk-text-code">https//dev.talenteca.com/api/v1/recruiter/job-ad/list</div>
     </p>
     <div class="uk-grid">
       <form class="uk-width-2-3@l" action="/?action=list-job-ads" method="post">
@@ -32,7 +32,7 @@
       <span><a class="uk-button uk-button-small uk-button-default" href="/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
-      <span>Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
     </div>
   </div>
 </div>
