@@ -16,7 +16,7 @@
       <div class="uk-text-meta uk-text-break tk-text-code">https//dev.talenteca.com/api/v1/recruiter/job-ad/list</div>
     </p>
     <div class="uk-grid">
-      <form class="uk-width-2-3@l" action="/?action=list-job-ads" method="post">
+      <form class="uk-width-2-3@l" action="<?= $basePath ?>/?action=list-job-ads" method="post">
         <fieldset class="uk-fieldset">
           <div class="uk-margin">
             <input class="uk-button uk-button-primary uk-align-center" type="submit" value="Load job ads list">

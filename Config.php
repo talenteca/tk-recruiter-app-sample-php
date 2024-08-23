@@ -14,12 +14,25 @@ class Config {
 
   public function getTestRecruiterAppId()
   {
-    return "tkrai:tk-recruiter-app-sample-sandbox:89425260059766841857197795291062";
+    return "tkrai:tk-recruiter-app-sample-sandbox:53331797198906154036";
   }
 
   public function getTestRecruiterAppSecret()
   {
-    return "JGQyU1VyVXpzTzJGbURHWExMZFV1OFE9PSRiRzB4N1lCYlNCbkRyTmg3WmVCQS9HVGNhTHl0QzBEdUtFK29scGIzTXNJUFIrcUVsSDRLTno0a25GTTdNTUlNTFNuYzRhbVJWbDBjVzB3cVEvR29lTmZBUmU5Tzgya0NyR04xcDd3ODBsTk8wK0Y4RzlGcjVqS3l0N0ZRbDluYVFxajNzWWJTU3N2S254ajlOSDM1MGNZSnY2QW5zK3dqMTlmU21RemUydU5KUnFKNnI4emdaeTE0SVZPYmpJbnArbkYxdldVanJBaHc1WUZ5elBHc0pyS3hDcDFrOFBwUUhwSnR0Wk9JenpQb3VHY0xWYTdUdWJES0dvVHFzcmtmUlFhNnZqS0JQSTM1S1E1WVE5aXRvbzlsaXB0N2c2ZEk1TlFFWUVQZUdZbFl5UnQ1ZWN3ZlI1VkFuZlBvaXp5NmRQc2w5VFY4d2dNQStjM3JBVFp2RzU1aEpWa01QMXdwRis1UXdLSlVTcE9rdUlYT0FDajZKanlMUHdrbWxUQTN0dTZRbmpUbUU2OURNN05pc2ZicWY0NU52OVZRczZpQ1M0QnhYcllxSkhLbi9xR21aTlJTTHBjQ3ZEemtkcWE3dW4xWlljd1hubzFGZ2RySkMwTmlIMjNHUVVVSEhUbS9XczNzSDJGaFRuWT0=";
+    return "JCszZ0pSZHBNcUN1eXNtaHplRFQvRWc9PSRNL0tMczFZTzRmVCthZEttTGN6MWhUM0FzSGxPTWZmV2Q4TS9BbThJU002NXlzbWxtczJEUHh5SVBpa3V1anZZZEtzakxDRXN4SUVOSFUvR0VsWmFRMDNrOVVJVmxuU1pGVXVFMFM2Qk5Gb1cvS3Q4VFZOQ3FvS0pVK04xcVdmTnFXL1I3dlBDWUJPNzlsUi9UVzVrNlpsRFhmYVdxelo5VWthdWZWR0xybTJOTHJnT09ycm1xMHR3WlR0M2FIV0gyc1Q5SGYyeVVsaXZMdGlnZXV3MVBsVXFKaXRzNjgvekJaSUVrNEJrb2F1Z21zRHoyODRPWG1wazhrQlFmeVIxaktyQmlSeURHMVBld3pWejFnbGRyWlpSVFJPbTJoaUR4TThqYXlBOUkyRUxkeWtubEFGRGtUUGI4cWJNTUpMOVpxOEhaMzRSamJKTEIwNlh0dWRHbTNhUWtSOGJvNVBJaGJQQzJOTHEzM1VDS3dMZHorWDBvSmlacTNrZldpZ2FWa0hCenkwUmp6azc3ZDRJODlMUURjaTh2d3htVkpYUVcxOEhPUXAwZHJoK2FpeFoxVE92TUdKMWZ6VG9Zdm14dVV4UFpwMFd5VUtTOEFvbld4SGQ0ZXgwS2lWdENmcnpxVXZWN3dEQ1FmWT0=";
+  }
+
+  public function getBasePath()
+  {
+      $document_uri = $_SERVER['DOCUMENT_URI'];
+      $parts = explode("/", $document_uri);
+      array_pop($parts);
+      return implode("/", $parts);
+  }
+
+  public function toBasePath($path)
+  {
+      return $this->getBasePath() . $path;
   }
 
   public function getRecruiterAppId()

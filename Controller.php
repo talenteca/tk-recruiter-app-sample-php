@@ -17,7 +17,7 @@ class Controller {
     {
       if (!isset($this->get['recruiter_app_id']))
       {
-        $this->session['error_message'] = "No recruiter app ID recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_message'] = "No recruiter app ID received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
         $this->session['error_detail'] = null;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
@@ -25,7 +25,7 @@ class Controller {
       $recruiterAppId = $this->get['recruiter_app_id'];
       if (!isset($this->get['challenge_code']))
       {
-        $this->session['error_message'] = "No challenge code recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_message'] = "No challenge code received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
         $this->session['error_detail'] = null;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
@@ -33,7 +33,7 @@ class Controller {
       $challengeCode = $this->get['challenge_code'];
       if (!isset($this->get['recruiter_id']))
       {
-        $this->session['error_message'] = "No Talenteca recruiter ID recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_message'] = "No Talenteca recruiter ID received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
         $this->session['error_detail'] = null;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
@@ -41,8 +41,8 @@ class Controller {
       $talentecaRecruiterId = $this->get['recruiter_id'];
       if (strlen($talentecaRecruiterId) != 24)
       {
-        $this->session['error_message'] = "Invalid Talenteca recruiter ID recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-        $this->session['error_detail'] = "The Talenteca recruiter ID revieved is ".$talentecaRecruiterId;
+        $this->session['error_message'] = "Invalid Talenteca recruiter ID received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_detail'] = "The Talenteca recruiter ID reviewed is ".$talentecaRecruiterId;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
       }
@@ -50,8 +50,8 @@ class Controller {
       $current_recruiter_app_id = $config->getRecruiterAppId();
       if ($recruiterAppId != $current_recruiter_app_id)
       {
-        $this->session['error_message'] = "Invalid recruiter app ID recieved. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-        $this->session['error_detail'] = "The recruiter app ID revieved is ".$recruiterAppId." and the current recruiter app ID is ".$current_recruiter_app_id;
+        $this->session['error_message'] = "Invalid recruiter app ID received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
+        $this->session['error_detail'] = "The recruiter app ID reviewed is ".$recruiterAppId." and the current recruiter app ID is ".$current_recruiter_app_id;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
       }
@@ -60,7 +60,7 @@ class Controller {
       if (is_null($userId))
       {
         $this->session['error_message'] = "Unable to get the user ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-        $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+        $this->session['error_detail'] = "The challenge code received is ".$challengeCode;
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
       }
@@ -84,6 +84,7 @@ class Controller {
   public function start()
   {
     $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $recruiterAppId = $config->getRecruiterAppId();
     $recruiterAppSecret = $config->getRecruiterAppSecret();
     $testRecruiterAppId = $config->getTestRecruiterAppId();
@@ -98,26 +99,29 @@ class Controller {
   public function startDemo()
   {
     $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     if(!isset($this->post['recruiter_app_id']) || $this->post['recruiter_app_id'] == "") {
       $config->recordRecruiterAppId('');
       $config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
       $this->session['error_message'] = "Recruiter app ID is required";
-      return header("Location: /?action=start");
+      return header("Location: " . $config->toBasePath("/?action=start"));
     }
     $config->recordRecruiterAppId($this->post['recruiter_app_id']);
     if(!isset($this->post['recruiter_app_secret']) || $this->post['recruiter_app_secret'] == "") {
       $config->recordRecruiterAppSecret($this->post['recruiter_app_id']);
       $config->recordRecruiterAppSecret('');
       $this->session['error_message'] = "Recruiter app secret is required";
-      return header("Location: /?action=start");
+      return header("Location: " . $config->toBasePath("/?action=start"));
     }
     $config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
     $this->session['error_message'] = null;
-    return header("Location: /?action=demo");
+    return header("Location: " . $config->toBasePath("/?action=demo"));
   }
 
   public function demo()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $auth = new Auth($this->session);
     $recruiter_app_info = $auth->getRecruiterAppInfo();
     if (is_null($recruiter_app_info)) {
@@ -128,6 +132,8 @@ class Controller {
 
   public function demoSignup()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (!is_null($user))
@@ -143,6 +149,8 @@ class Controller {
 
   public function signup()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     if (!isset($this->post['user_email']) || $this->post['user_email'] == "")
     {
       $this->session['error_message'] = 'User email is required';
@@ -170,6 +178,8 @@ class Controller {
 
   public function demoPrepareAuth()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (is_null($user))
@@ -184,6 +194,8 @@ class Controller {
 
   public function prepareAuth()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (is_null($user))
@@ -217,6 +229,8 @@ class Controller {
 
   public function demoRequestPermission()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     if (!isset($this->session['recruiter_app_auth_url']))
     {
       $this->session['message_title'] = "Request Permission";
@@ -230,6 +244,8 @@ class Controller {
 
   public function requestPermission()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     if (!isset($this->session['recruiter_app_auth_url']))
     {
       $this->session['message_title'] = "Request Permission";
@@ -238,7 +254,7 @@ class Controller {
       return $this->showMessage();
     }
     $recruiter_app_auth_url = $this->session['recruiter_app_auth_url'];
-    return header("Location: ".$recruiter_app_auth_url);
+    return header("Location: " . $recruiter_app_auth_url);
   }
 
   public function demoListJobAds()
@@ -357,8 +373,8 @@ class Controller {
       'custom_company_name' => $this->post['custom_company_name'],
       'category' => $this->post['category'],
       'industry' => $this->post['industry'],
-      'desired_candidate_education_level' => $this-post['desired_candidate_education_level'],
-      'desired_candidate_experience_level' => $this-post['desired_candidate_experience_level'],
+      'desired_candidate_education_level' => $this->post['desired_candidate_education_level'],
+      'desired_candidate_experience_level' => $this->post['desired_candidate_experience_level'],
       'country_code' => $this->post['country_code'],
       'postal_code' => $this->post['postal_code'],
       'position' => $this->post['position'],
@@ -411,7 +427,7 @@ class Controller {
     $jobAdId = $this->session['job_ad_in_progress_id'];
     $this->session['message_title'] = "Activate job ad";
     $this->session['message_text'] = "Now you can activate the created job ad to move it from 'in progress' status to 'published' status.";
-    $this->session['message_detail'] = "Jod ad to activate: ".$jobAdId;
+    $this->session['message_detail'] = "Jod ad to activate: " . $jobAdId;
     $this->session['return_action'] = "/?action=activate-job-ad";
     return $this->showMessage();
 }
@@ -475,7 +491,7 @@ class Controller {
     if (is_null($userId))
     {
       $this->session['error_message'] = "Unable to get the user ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-      $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+      $this->session['error_detail'] = "The challenge code received is ".$challengeCode;
       $this->session['return_action'] = "/?action=demo#demo-3";
       return $this->showError();
     }
@@ -483,7 +499,7 @@ class Controller {
     if (is_null($talentecaRecruiterId))
     {
       $this->session['error_message'] = "Unable to get the Talenteca recruiter ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-      $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+      $this->session['error_detail'] = "The challenge code received is ".$challengeCode;
       $this->session['return_action'] = "/?action=demo#demo-3";
       return $this->showError();
     }
@@ -505,7 +521,7 @@ class Controller {
     if (is_null($userId))
     {
       $this->session['error_message'] = "Unable to get the user ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-      $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+      $this->session['error_detail'] = "The challenge code received is ".$challengeCode;
       $this->session['return_action'] = "/?action=demo#demo-3";
       return $this->showError();
     }
@@ -513,7 +529,7 @@ class Controller {
     if (is_null($talentecaRecruiterId))
     {
       $this->session['error_message'] = "Unable to get the Talenteca recruiter ID for the challenge code granted permission. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
-      $this->session['error_detail'] = "The challenge code recieved is ".$challengeCode;
+      $this->session['error_detail'] = "The challenge code received is ".$challengeCode;
       $this->session['return_action'] = "/?action=demo#demo-3";
       return $this->showError();
     }
@@ -544,6 +560,7 @@ class Controller {
 
   public function restart()
   {
+    $config = new Config($this->session);
     unset($this->session['user']);
     unset($this->session['recruiter_app_info']);
     unset($this->session['recruiter_app_auth_url']);
@@ -558,23 +575,25 @@ class Controller {
     unset($this->session['access_tokens_by_user_id']);
     unset($this->session['job_ad_in_progress_id']);
     unset($this->session['challenge_code_ready_for_access_token']);
-    return header("Location: /?action=start");
+    return header("Location: " . $config->toBasePath("/?action=start"));
   }
 
   public function showMessage()
   {
+    $config = new Config($this->session);
     $message_title = $this->session['message_title'];
     $message_text = $this->session['message_text'];
     $message_detail = $this->session['message_detail'];
-    $return_action = $this->session['return_action'];
+    $return_action = $config->toBasePath($this->session['return_action']);
     require_once('layout/views/message.php');
   }
 
   public function showError()
   {
+    $config = new Config($this->session);
     $error_message = $this->session['error_message'];
     $error_detail = $this->session['error_detail'];
-    $return_action = $this->session['return_action'];
+    $return_action = $config->toBasePath($this->session['return_action']);
     require_once('layout/views/error.php');
   }
 

@@ -18,7 +18,7 @@
     </div>
     <?php } ?>
     <div class="uk-grid">
-      <form class="uk-width-2-3@l" action="/?action=signup" method="post">
+      <form class="uk-width-2-3@l" action="<?= $basePath ?>/?action=signup" method="post">
         <fieldset class="uk-fieldset">
           <div class="uk-margin">
             <legend class="uk-legend uk-text-small uk-text-bold">User email</legend>

@@ -26,7 +26,7 @@
         <p>This local user is just a demo but in your real application it will have your internal credentials, sign up and login full process.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-signup">Sign up</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-signup">Sign up</a>
       </div>
     </div>
   </div>
