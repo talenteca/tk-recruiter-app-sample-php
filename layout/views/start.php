@@ -54,7 +54,7 @@
     </div>
     <?php } ?>
     <div class="uk-width-2-3@l">
-      <form action="/?action=start-demo" method="post">
+      <form action="<?= $basePath ?>/?action=start-demo" method="post">
         <fieldset class="uk-fieldset">
           <div>
             <div class="uk-margin">

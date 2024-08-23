@@ -21,7 +21,7 @@
     </div>
     <?php } ?>
     <div class="uk-grid">
-      <form class="uk-width-2-3@l" action="/?action=prepare-auth" method="post">
+      <form class="uk-width-2-3@l" action="<?= $basePath ?>/?action=prepare-auth" method="post">
         <fieldset class="uk-fieldset">
           <div class="uk-margin">
             <pre class="uk-text-meta uk-text-break">

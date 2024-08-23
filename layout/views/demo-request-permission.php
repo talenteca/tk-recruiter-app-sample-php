@@ -21,7 +21,7 @@
     </div>
     <?php } ?>
     <div class="uk-grid">
-      <form class="uk-width-2-3@l" action="/?action=request-permission" method="post">
+      <form class="uk-width-2-3@l" action="<?= $basePath ?>/?action=request-permission" method="post">
         <fieldset class="uk-fieldset">
           <div class="uk-margin">
             <a class="uk-button uk-button-primary uk-align-center" href="<?= $recruiter_app_auth_url ?>">Request permission</a>

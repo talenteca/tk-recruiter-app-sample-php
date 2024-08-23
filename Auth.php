@@ -23,28 +23,33 @@ class Auth {
     $data = [
       'app_id' => $this->config->getRecruiterAppId()
     ];
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $response = curl_exec($curl);
-    $status_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-    curl_close($curl);
-    if ($status_code == 200)
-    {
-      $json = json_decode($response);
-      if ($json->status == "ok")
-      {
-        $recruiter_app_info = $json->app_info;
-        $this->session['recruiter_app_info'] = $recruiter_app_info;
-        return $recruiter_app_info;
-      }
+    try {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($curl);
+        $status_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+        curl_close($curl);
+        if ($status_code == 200) {
+            $json = json_decode($response);
+            if ($json->status == "ok") {
+                $recruiter_app_info = $json->app_info;
+                $this->session['recruiter_app_info'] = $recruiter_app_info;
+                return $recruiter_app_info;
+            }
+        }
+        $this->session['error_message'] = "Unable to get recruiter app info, please ensure your credentials are right";
+        $this->session['error_detail'] = $response;
+        return null;
     }
-    $this->session['error_message'] = "Unable to get recruiter app info, please ensure your credentials are right";
-    $this->session['error_detail'] = $response;
-    return null;
+    catch (Exception $error)
+    {
+        $this->session['error_message'] = "Internal error trying to get recruiter app info, please check server configuration";
+        $this->session['error_detail'] = $error->getMessage();
+    }
   }
 
   public function getRequestAppAuthUrl($user)
