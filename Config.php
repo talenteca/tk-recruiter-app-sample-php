@@ -9,7 +9,7 @@ class Config {
 
   public function getTalentecaBaseUrl()
   {
-    return 'https://dev.talenteca.com';
+    return 'https://www.talenteca.com';
   }
 
   public function getTestRecruiterAppId()

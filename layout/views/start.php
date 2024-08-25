@@ -84,7 +84,7 @@
       For requesting your credentials please write to <a href="mailto:soporte@talenteca.com">soporte@talenteca.com</a>
     </p>
     <p>
-      Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a>
+      Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a>
     </p>
   </div>
 </div>

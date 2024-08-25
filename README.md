@@ -30,4 +30,4 @@ http://localhost:8000/
 
 ## Documentation
 
-For more information please go to the [Talenteca API Documentation](https://dev.talenteca.com/api/doc/)
+For more information please go to the [Talenteca API Documentation](https://www.talenteca.com/api/doc/)

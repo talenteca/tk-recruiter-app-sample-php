@@ -13,7 +13,7 @@
       A challenge code is just a random encrypted text that ensures your authenticity towards Talenteca recruiters when asking for permissions for your app.
     </p>
     <p class="uk-text-small">
-      You can create a challenge code at any time, you just need your recruiter app ID and recruiter app secret, and send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://dev.talenteca.com/api/v1/oauth/recruiter/challenge-code</span> using this structure:
+      You can create a challenge code at any time, you just need your recruiter app ID and recruiter app secret, and send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://www.talenteca.com/api/v1/oauth/recruiter/challenge-code</span> using this structure:
     </p>
     <?php if (!is_null($errorMessage)) { ?>
     <div class="uk-margin uk-align-center uk-width-2-3@l uk-text-danger">
@@ -48,7 +48,7 @@
       <span><a class="uk-button uk-button-small uk-button-default" href="<?= $basePath ?>/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
-      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+      <span>Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a></span>
     </div>
   </div>
 </div>

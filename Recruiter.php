@@ -9,7 +9,7 @@ class Recruiter {
 
   public function getAllJobAds($accessToken)
   {
-    $url = "https://dev.talenteca.com/api/v1/recruiter/job-ad/list";
+    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/list";
     $data = [
       'access_token' => $accessToken
     ];
@@ -42,7 +42,7 @@ class Recruiter {
 
   public function createJobAdInProgress($accessToken, $jobAd)
   {
-    $url = "https://dev.talenteca.com/api/v1/recruiter/job-ad/create-in-progress";
+    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/create-in-progress";
     $data = [
       'access_token' => $accessToken,
       'job_ad' => $jobAd
@@ -72,7 +72,7 @@ class Recruiter {
 
   public function activateJobAd($accessToken, $jobAdId)
   {
-    $url = "https://dev.talenteca.com/api/v1/recruiter/job-ad/activate";
+    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/activate";
     $data = [
       'access_token' => $accessToken,
       'job_ad_id' => $jobAdId

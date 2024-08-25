@@ -16,7 +16,7 @@
       <strong class="uk-text-danger">IMPORTANT:</strong> the access token is the most sensible piece of data of this flow, so it should be kept encrypted, secret and safe.
     </p>
     <p class="uk-text-small">
-      For creating an access token you need an approved challenge code and the linked Talenteca recruiter ID with your recruiter app credentials to send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://dev.talenteca.com/api/v1/oauth/recruiter/access-token</span> using this structure:
+      For creating an access token you need an approved challenge code and the linked Talenteca recruiter ID with your recruiter app credentials to send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://www.talenteca.com/api/v1/oauth/recruiter/access-token</span> using this structure:
     </p>
     <?php if (!is_null($errorMessage)) { ?>
     <div class="uk-margin uk-align-center uk-width-2-3@l uk-text-danger">
@@ -53,7 +53,7 @@
       <span><a class="uk-button uk-button-small uk-button-default" href="<?= $basePath ?>/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
-      <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>
+      <span>Find more information at the <a href="https://www.talenteca.com/api/doc/">Talenteca API Doc</a></span>
     </div>
   </div>
 </div>
