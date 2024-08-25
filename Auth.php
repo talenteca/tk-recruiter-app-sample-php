@@ -131,12 +131,14 @@ class Auth {
 
   private function getRedirectCallbackUrl()
   {
+    $config = new Config($this->session);
+    $basePath = $config->getBasePath();
     $schema = "http";
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on")
     {
       $schema = "https";
     }
-    return $schema."://".$_SERVER['HTTP_HOST']."/?action=recieve-auth";
+    return $schema . "://" . $_SERVER['HTTP_HOST'] . $basePath . "/?action=recieve-auth";
   }
 
 }

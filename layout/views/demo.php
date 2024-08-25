@@ -40,7 +40,7 @@
         <p>Technically speaking, the authentication request is based on a random text secret called a challenge code. To get a new challenge code you may call Talenteca using your valid recruiter app credentials.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-prepare-auth">Prepare</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-prepare-auth">Prepare</a>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
         <p>For getting this permission your user will be redirected to Talenteca to explain what your recruiter app is about.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-request-permission">Request</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-request-permission">Request</a>
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
         <p>The access token is the most sensible part of the integration so it should be carefully linked to your internal user account in encrypted form and stored securely.
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-create-access-token">Create</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-create-access-token">Create</a>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
         <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-list-job-ads">Load</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-list-job-ads">Load</a>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
         <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-create-job-ad">Create</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-create-job-ad">Create</a>
       </div>
     </div>
   </div>
@@ -110,7 +110,7 @@
         <p>If you have even further valid permissions you may create new job ads, deactivate job ads, republish job ads and a lot other actions in behalf of your users.</p>
       </div>
       <div>
-        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="/?action=demo-activate-job-ad">Activate</a>
+        <a class="uk-button uk-width-1-3@m uk-button-primary uk-align-center" href="<?= $basePath ?>/?action=demo-activate-job-ad">Activate</a>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
 <div class="uk-section uk-section-secondary">
   <div class="uk-container uk-flex uk-flex-center">
     <div class="uk-flex-wrap uk-margin-right uk-width-1-1@s uk-width-auto@m">
-      <span><a class="uk-button uk-button-small uk-button-default" href="/?action=restart">Restart demo</a></span>
+      <span><a class="uk-button uk-button-small uk-button-default" href="<?= $basePath ?>/?action=restart">Restart demo</a></span>
     </div>
     <div class="uk-flex-wrap uk-margin-left uk-text-small uk-margin-auto-vertical">
       <span>Find more information at the <a href="https://dev.talenteca.com/api/doc/">Talenteca API Doc</a></span>

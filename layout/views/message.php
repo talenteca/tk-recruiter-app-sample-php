@@ -20,7 +20,7 @@
 <div class="uk-section uk-section-muted">
   <div class="uk-container uk-flex uk-flex-center">
     <div>
-      <a class="uk-button uk-button-default" href="/?action=restart">Restart demo</a>
+      <a class="uk-button uk-button-default" href="<?= $basePath ?>/?action=restart">Restart demo</a>
     </div>
     <div>
       <a class="uk-button uk-margin-left uk-button-primary" href="<?= $return_action ?>">Continue</a>
