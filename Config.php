@@ -24,8 +24,13 @@ class Config {
 
   public function getBasePath()
   {
-      $document_uri = $_SERVER['DOCUMENT_URI'];
-      $parts = explode("/", $document_uri);
+      $request_uri = $_SERVER['REQUEST_URI'];
+      $base_request_uri = explode("?", $request_uri)[0];
+      if (substr($base_request_uri, -1) != "/")
+      {
+        $base_request_uri = $base_request_uri . "/";
+      }
+      $parts = explode("/", $base_request_uri);
       array_pop($parts);
       return implode("/", $parts);
   }
