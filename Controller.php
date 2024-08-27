@@ -7,6 +7,7 @@ class Controller {
     $this->get = $get;
     $this->post = $post;
     $this->session = &$session;
+    $this->config = new Config($this->session);
   }
 
   public function recieveAuth()
@@ -46,8 +47,7 @@ class Controller {
         $this->session['return_action'] = "/?action=demo-request-permission";
         return $this->showError();
       }
-      $config = new Config($this->session);
-      $current_recruiter_app_id = $config->getRecruiterAppId();
+      $current_recruiter_app_id = $this->config->getRecruiterAppId();
       if ($recruiterAppId != $current_recruiter_app_id)
       {
         $this->session['error_message'] = "Invalid recruiter app ID received. Maybe this is a simple miss configuration or a session expiration on the local server but it can also actually happen on real servers and this is trying to prevent possible attacks of man in the middle on the authorization process. If you recieve these kind of attacks please contact Talenteca to try to minimize them and fix them.";
@@ -83,12 +83,12 @@ class Controller {
 
   public function start()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
-    $recruiterAppId = $config->getRecruiterAppId();
-    $recruiterAppSecret = $config->getRecruiterAppSecret();
-    $testRecruiterAppId = $config->getTestRecruiterAppId();
-    $testRecruiterAppSecret = $config->getTestRecruiterAppSecret();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
+    $recruiterAppId = $this->config->getRecruiterAppId();
+    $recruiterAppSecret = $this->config->getRecruiterAppSecret();
+    $testRecruiterAppId = $this->config->getTestRecruiterAppId();
+    $testRecruiterAppSecret = $this->config->getTestRecruiterAppSecret();
     $errorMessage = null;
     if (isset($this->session['error_message'])) {
       $errorMessage = $this->session['error_message'];
@@ -98,30 +98,30 @@ class Controller {
 
   public function startDemo()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     if(!isset($this->post['recruiter_app_id']) || $this->post['recruiter_app_id'] == "") {
-      $config->recordRecruiterAppId('');
-      $config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
+      $this->config->recordRecruiterAppId('');
+      $this->config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
       $this->session['error_message'] = "Recruiter app ID is required";
-      return header("Location: " . $config->toBasePath("/?action=start"));
+      return header("Location: " . $this->config->toBasePath("/?action=start"));
     }
-    $config->recordRecruiterAppId($this->post['recruiter_app_id']);
+    $this->config->recordRecruiterAppId($this->post['recruiter_app_id']);
     if(!isset($this->post['recruiter_app_secret']) || $this->post['recruiter_app_secret'] == "") {
-      $config->recordRecruiterAppSecret($this->post['recruiter_app_id']);
-      $config->recordRecruiterAppSecret('');
+      $this->config->recordRecruiterAppSecret($this->post['recruiter_app_id']);
+      $this->config->recordRecruiterAppSecret('');
       $this->session['error_message'] = "Recruiter app secret is required";
-      return header("Location: " . $config->toBasePath("/?action=start"));
+      return header("Location: " . $this->config->toBasePath("/?action=start"));
     }
-    $config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
+    $this->config->recordRecruiterAppSecret($this->post['recruiter_app_secret']);
     $this->session['error_message'] = null;
-    return header("Location: " . $config->toBasePath("/?action=demo"));
+    return header("Location: " . $this->config->toBasePath("/?action=demo"));
   }
 
   public function demo()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $auth = new Auth($this->session);
     $recruiter_app_info = $auth->getRecruiterAppInfo();
     if (is_null($recruiter_app_info)) {
@@ -132,8 +132,8 @@ class Controller {
 
   public function demoSignup()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (!is_null($user))
@@ -149,8 +149,8 @@ class Controller {
 
   public function signup()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     if (!isset($this->post['user_email']) || $this->post['user_email'] == "")
     {
       $this->session['error_message'] = 'User email is required';
@@ -178,8 +178,8 @@ class Controller {
 
   public function demoPrepareAuth()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (is_null($user))
@@ -194,8 +194,8 @@ class Controller {
 
   public function prepareAuth()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $users = new Users($this->session);
     $user = $users->getCurrentUser();
     if (is_null($user))
@@ -229,8 +229,8 @@ class Controller {
 
   public function demoRequestPermission()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     if (!isset($this->session['recruiter_app_auth_url']))
     {
       $this->session['message_title'] = "Request Permission";
@@ -244,8 +244,8 @@ class Controller {
 
   public function requestPermission()
   {
-    $config = new Config($this->session);
-    $basePath = $config->getBasePath();
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     if (!isset($this->session['recruiter_app_auth_url']))
     {
       $this->session['message_title'] = "Request Permission";
@@ -560,7 +560,6 @@ class Controller {
 
   public function restart()
   {
-    $config = new Config($this->session);
     unset($this->session['user']);
     unset($this->session['recruiter_app_info']);
     unset($this->session['recruiter_app_auth_url']);
@@ -575,25 +574,27 @@ class Controller {
     unset($this->session['access_tokens_by_user_id']);
     unset($this->session['job_ad_in_progress_id']);
     unset($this->session['challenge_code_ready_for_access_token']);
-    return header("Location: " . $config->toBasePath("/?action=start"));
+    return header("Location: " . $this->config->toBasePath("/?action=start"));
   }
 
   public function showMessage()
   {
-    $config = new Config($this->session);
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $message_title = $this->session['message_title'];
     $message_text = $this->session['message_text'];
     $message_detail = $this->session['message_detail'];
-    $return_action = $config->toBasePath($this->session['return_action']);
+    $return_action = $this->config->toBasePath($this->session['return_action']);
     require_once('layout/views/message.php');
   }
 
   public function showError()
   {
-    $config = new Config($this->session);
+    $basePath = $this->config->getBasePath();
+    $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $error_message = $this->session['error_message'];
     $error_detail = $this->session['error_detail'];
-    $return_action = $config->toBasePath($this->session['return_action']);
+    $return_action = $this->config->toBasePath($this->session['return_action']);
     require_once('layout/views/error.php');
   }
 

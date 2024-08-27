@@ -1,6 +1,6 @@
 <div class="uk-section uk-section-primary">
   <div class="uk-container uk-container-small">
-    <h1>Talenteca Recruiter app integration demo</h1>
+    <h1>Demo Recruiter App integration with Talenteca</h1>
   </div>
 </div>
 <div class="uk-section uk-section-default">

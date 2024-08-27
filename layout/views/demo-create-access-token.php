@@ -1,6 +1,6 @@
 <div class="uk-section uk-section-primary">
   <div class="uk-container uk-container-small">
-    <h1>Talenteca Recruiter app integration demo</h1>
+    <h1>Demo Recruiter App integration with Talenteca</h1>
   </div>
 </div>
 <div class="uk-section uk-section-default">
@@ -16,7 +16,7 @@
       <strong class="uk-text-danger">IMPORTANT:</strong> the access token is the most sensible piece of data of this flow, so it should be kept encrypted, secret and safe.
     </p>
     <p class="uk-text-small">
-      For creating an access token you need an approved challenge code and the linked Talenteca recruiter ID with your recruiter app credentials to send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://www.talenteca.com/api/v1/oauth/recruiter/access-token</span> using this structure:
+      For creating an access token you need an approved challenge code and the linked Talenteca recruiter ID with your recruiter app credentials to send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break"><?= $talentecaBaseUrl ?>/api/v1/oauth/recruiter/access-token</span> using this structure:
     </p>
     <?php if (!is_null($errorMessage)) { ?>
     <div class="uk-margin uk-align-center uk-width-2-3@l uk-text-danger">

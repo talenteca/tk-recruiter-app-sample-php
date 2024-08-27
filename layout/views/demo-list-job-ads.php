@@ -1,6 +1,6 @@
 <div class="uk-section uk-section-primary">
   <div class="uk-container uk-container-small">
-    <h1>Talenteca Recruiter app integration demo</h1>
+    <h1>Demo Recruiter App integration with Talenteca</h1>
   </div>
 </div>
 <div class="uk-section uk-section-default">
@@ -13,7 +13,7 @@
       We just need to use the user linked access token to call this URL:
     </p>
     <p>
-      <div class="uk-text-meta uk-text-break tk-text-code">https//www.talenteca.com/api/v1/recruiter/job-ad/list</div>
+      <div class="uk-text-meta uk-text-break tk-text-code"><?= $talentecaBaseUrl ?>/api/v1/recruiter/job-ad/list</div>
     </p>
     <div class="uk-grid">
       <form class="uk-width-2-3@l" action="<?= $basePath ?>/?action=list-job-ads" method="post">

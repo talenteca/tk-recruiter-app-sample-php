@@ -5,11 +5,12 @@ class Recruiter {
   public function __construct(&$session)
   {
     $this->session = &$session;
+    $this->config = new Config($this->session);
   }
 
   public function getAllJobAds($accessToken)
   {
-    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/list";
+    $url = $this->config->getTalentecaBaseUrl() . "/api/v1/recruiter/job-ad/list";
     $data = [
       'access_token' => $accessToken
     ];
@@ -42,7 +43,7 @@ class Recruiter {
 
   public function createJobAdInProgress($accessToken, $jobAd)
   {
-    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/create-in-progress";
+    $url = $this->config->getTalentecaBaseUrl() . "/api/v1/recruiter/job-ad/create-in-progress";
     $data = [
       'access_token' => $accessToken,
       'job_ad' => $jobAd
@@ -72,7 +73,7 @@ class Recruiter {
 
   public function activateJobAd($accessToken, $jobAdId)
   {
-    $url = "https://www.talenteca.com/api/v1/recruiter/job-ad/activate";
+    $url = $this->config->getTalentecaBaseUrl() . "/api/v1/recruiter/job-ad/activate";
     $data = [
       'access_token' => $accessToken,
       'job_ad_id' => $jobAdId

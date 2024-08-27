@@ -1,6 +1,6 @@
 <div class="uk-section uk-section-primary">
   <div class="uk-container uk-container-small">
-    <h1>Talenteca Recruiter app integration demo</h1>
+    <h1>Demo Recruiter App integration with Talenteca</h1>
   </div>
 </div>
 <div class="uk-section uk-section-default">
@@ -13,7 +13,7 @@
       A challenge code is just a random encrypted text that ensures your authenticity towards Talenteca recruiters when asking for permissions for your app.
     </p>
     <p class="uk-text-small">
-      You can create a challenge code at any time, you just need your recruiter app ID and recruiter app secret, and send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break">https://www.talenteca.com/api/v1/oauth/recruiter/challenge-code</span> using this structure:
+      You can create a challenge code at any time, you just need your recruiter app ID and recruiter app secret, and send them as JSON to the Talenteca endpoint <span class="uk-text-primary uk-text-break"><?= $talentecaBaseUrl ?>/api/v1/oauth/recruiter/challenge-code</span> using this structure:
     </p>
     <?php if (!is_null($errorMessage)) { ?>
     <div class="uk-margin uk-align-center uk-width-2-3@l uk-text-danger">

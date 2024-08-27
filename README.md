@@ -1,4 +1,4 @@
-# Talenteca Recruiter App Sample PHP
+# Demo Recruiter App integration with Talenteca
 
 This repo contains a reference source code to help in using the Talenteca API.
 
