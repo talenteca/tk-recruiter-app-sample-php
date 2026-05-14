@@ -2,6 +2,8 @@
 
 class Config {
 
+  public mixed $session;
+
   public function __construct(&$session)
   {
     $this->session = &$session;

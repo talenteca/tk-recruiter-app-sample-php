@@ -2,7 +2,15 @@
 
 class Controller {
 
-  public function __construct($get, $post, &$session)
+public mixed $get;
+
+public mixed $post;
+
+public mixed $session;
+
+public mixed $config;
+
+public function __construct($get, $post, &$session)
   {
     $this->get = $get;
     $this->post = $post;
@@ -178,6 +186,7 @@ class Controller {
 
   public function demoPrepareAuth()
   {
+    $errorMessage = null;
     $basePath = $this->config->getBasePath();
     $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     $users = new Users($this->session);
@@ -229,6 +238,7 @@ class Controller {
 
   public function demoRequestPermission()
   {
+    $errorMessage = null;
     $basePath = $this->config->getBasePath();
     $talentecaBaseUrl = $this->config->getTalentecaBaseUrl();
     if (!isset($this->session['recruiter_app_auth_url']))

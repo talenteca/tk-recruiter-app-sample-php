@@ -4,14 +4,7 @@ This repo contains a reference source code to help in using the Talenteca API.
 
 ## Requirements
 
-* PHP 7+ with the curl library active
-
-As a reference, if you are using a Debian based Linux the requirements can be installed with these commands:
-
-```bash
-sudo apt-get install php
-sudo apt-get install php-curl
-```
+* PHP 8.5+ with the curl library active
 
 ## How to run
 

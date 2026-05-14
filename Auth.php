@@ -2,6 +2,10 @@
 
 class Auth {
 
+  public mixed $session;
+
+  public mixed $config;
+
   public function __construct(&$session)
   {
     $this->session = &$session;
@@ -32,7 +36,6 @@ class Auth {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec($curl);
         $status_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-        curl_close($curl);
         if ($status_code == 200) {
             $json = json_decode($response);
             if ($json->status == "ok") {
@@ -79,7 +82,6 @@ class Auth {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($curl);
     $status_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-    curl_close($curl);
     if ($status_code == 200)
     {
       $json = json_decode($response);
@@ -113,7 +115,6 @@ class Auth {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($curl);
     $status_code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-    curl_close($curl);
     if ($status_code == 200)
     {
       $json = json_decode($response);
